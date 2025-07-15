@@ -1,90 +1,40 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>TUSKUB SHOP - Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background: #222;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .login-box {
-      background: #1a1a1a;
-      padding: 32px 24px;
-      border-radius: 10px;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.5);
-      width: 350px;
-      text-align: center;
-    }
-    .login-box h2 {
-      margin-bottom: 24px;
-      font-weight: 600;
-      font-size: 1.5rem;
-      letter-spacing: 1px;
-    }
-    .login-box input {
-      width: 90%;
-      padding: 12px;
-      margin-bottom: 16px;
-      border: none;
-      border-radius: 6px;
-      background: #333;
-      color: #fff;
-      font-size: 1rem;
-    }
-    .login-box button {
-      width: 100%;
-      padding: 12px;
-      background: #3a7cff;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .login-box button:hover {
-      background: #1f62d2;
-    }
-    .login-box .links {
-      margin-top: 18px;
-      font-size: 0.95rem;
-    }
-    .login-box .links a {
-      color: #3a7cff;
-      text-decoration: none;
-      margin: 0 8px;
-    }
-  </style>
+  <title>Login - Tuskub Panel</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <div class="login-box">
-    <h2>TUSKUB SHOP เข้าสู่ระบบ</h2>
+  <div class="container">
+    <h2>เข้าสู่ระบบ</h2>
     <form id="loginForm">
-      <input type="text" id="username" placeholder="ชื่อผู้ใช้" required>
-      <input type="password" id="password" placeholder="รหัสผ่าน" required>
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
       <button type="submit">เข้าสู่ระบบ</button>
     </form>
-    <div class="links">
-      <a href="#">ลืมรหัสผ่าน?</a>
-      | 
-      <a href="#">สมัครสมาชิก</a>
-    </div>
+    <div id="loginResult"></div>
+    <p>ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a></p>
   </div>
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('ฟอร์มนี้เป็นตัวอย่าง! กรุณาเชื่อมต่อ backend เพื่อใช้งานจริง');
-      // ส่งข้อมูลไป backend ด้วย fetch/ajax ได้ที่นี่
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const res = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+      if (data.success) {
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('username', username);
+        window.location = 'dashboard.html';
+      } else {
+        document.getElementById('loginResult').textContent = data.message;
+      }
     });
   </script>
 </body>
-  </html>
+</html>
