@@ -1,40 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>Login - Tuskub Panel</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <title>Tuskub PANEL - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .logo-bar {
+      display: flex;
+      align-items: center;
+      padding: 16px 24px 4px 24px;
+      border-bottom: 1px solid #eee;
+    }
+    .logo-bar img {
+      width: 40px;
+      margin-right: 8px;
+    }
+    .logo-bar span {
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: #6b6b6b;
+    }
+    .menu-btn {
+      margin-left: auto;
+      background: #666;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .alert-bar {
+      background: #eaeaea;
+      margin: 24px 16px 8px 16px;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      font-size: 1.1rem;
+      color: #555;
+      justify-content: space-between;
+    }
+    .gradient-box {
+      background: linear-gradient(120deg, #ffb6b9 0%, #f9f586 50%, #b5ead7 100%);
+      margin: 12px 16px 0 16px;
+      border-radius: 20px;
+      padding: 16px;
+      font-size: 1.1rem;
+      color: #d1006f;
+      box-shadow: 0 2px 14px #0001;
+    }
+    .login-box {
+      margin: 32px auto 0 auto;
+      max-width: 500px;
+      padding: 32px 24px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #b5ead7 0%, #f9f586 50%, #ffb6b9 100%);
+      box-shadow: 0 8px 32px #0002;
+    }
+    .login-box h2 {
+      text-align: center;
+      font-size: 2.1rem;
+      color: #888;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .login-box label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 1.13rem;
+      color: #868686;
+      margin-top: 18px;
+    }
+    .login-box input[type="text"], .login-box input[type="password"] {
+      width: 100%;
+      padding: 14px;
+      border-radius: 24px;
+      border: none;
+      background: #fff;
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      outline: none;
+      box-shadow: 0 1px 5px #0001;
+      transition: box-shadow 0.2s;
+    }
+    .login-box input:focus {
+      box-shadow: 0 2px 12px #0002;
+    }
+    .login-box .stay-login {
+      display: flex;
+      align-items: center;
+      margin: 14px 0;
+      font-size: 1rem;
+      color: #ae7cc9;
+    }
+    .login-box .stay-login input[type="checkbox"] {
+      margin-right: 8px;
+      accent-color: #ae7cc9;
+    }
+    .login-box button {
+      width: 50%;
+      padding: 12px 0;
+      margin: 12px auto 0 auto;
+      display: block;
+      background: #fff;
+      color: #8c6bd8;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border: 1px solid #8c6bd8;
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .login-box button:hover {
+      background: #8c6bd8;
+      color: #fff;
+    }
+    .login-box .login-icon {
+      margin-right: 6px;
+      color: #8c6bd8;
+    }
+    .register-section {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 24px;
+    }
+    .register-section a {
+      padding: 8px 22px;
+      border: 1.5px solid #ed2b2b;
+      border-radius: 24px;
+      color: #ed2b2b;
+      text-decoration: none;
+      margin-left: 10px;
+      font-size: 1.1rem;
+      background: #fff;
+      transition: background 0.2s, color 0.2s;
+    }
+    .register-section a:hover {
+      background: #ed2b2b;
+      color: #fff;
+    }
+    .footer {
+      text-align: center;
+      color: #888;
+      font-size: 1rem;
+      padding: 32px 0 20px 0;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h2>เข้าสู่ระบบ</h2>
+  <div class="logo-bar">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="logo">
+    <span>Tuskub PANEL</span>
+    <button class="menu-btn">&#9776;</button>
+  </div>
+  <div class="alert-bar">
+    <span>สวัสดีแอดมิน Tuskub</span>
+    <span style="cursor:pointer;">&#10006;</span>
+  </div>
+  <div class="gradient-box">
+    <b>Tuskub</b><br>
+    <span style="font-size:0.96rem;color:#d1006f;">
+      <span style="margin-right:5px;">&#9658;</span>
+      ต้องการเช่าแผง รายเดือน/รายปี ติดต่อที่ @BotexeX
+    </span>
+  </div>
+  <div class="login-box">
+    <h2>Login</h2>
     <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <button type="submit">เข้าสู่ระบบ</button>
+      <label>Username</label>
+      <input type="text" id="username" placeholder="Enter Your username" required>
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter Your password" required>
+      <div class="stay-login">
+        <input type="checkbox" id="stayLogin"> Stay login?
+      </div>
+      <button type="submit"><span class="login-icon">&#x1F511;</span> Log in</button>
+      <div id="loginMsg" style="margin-top:14px;color:#ed2b2b;font-size:1em;"></div>
     </form>
-    <div id="loginResult"></div>
-    <p>ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิก</a></p>
+  </div>
+  <div class="register-section">
+    สมัครบัญชี ที่นี่ 
+    <a href="register.html">Create New</a>
+  </div>
+  <div class="footer">
+    &copy; 2025 – Tuskub PANEL
   </div>
   <script>
+    // เปลี่ยน URL นี้เป็น API เดิมของระบบหลังบ้านคุณ
+    const API_URL = "http://localhost:3000/api/auth/login"; // ตัวอย่าง สมมุติ
+
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
-      const res = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
-      const data = await res.json();
-      if (data.success) {
-        localStorage.setItem('userId', data.userId);
-        localStorage.setItem('username', username);
-        window.location = 'dashboard.html';
-      } else {
-        document.getElementById('loginResult').textContent = data.message;
+      const stayLogin = document.getElementById('stayLogin').checked;
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, stayLogin })
+        });
+        const data = await res.json();
+        if (data.success) {
+          // ตัวอย่าง: เก็บ token หรือ redirect
+          localStorage.setItem('token', data.token);
+          window.location = 'dashboard.html';
+        } else {
+          document.getElementById('loginMsg').textContent = data.message || "เข้าสู่ระบบไม่สำเร็จ";
+        }
+      } catch (err) {
+        document.getElementById('loginMsg').textContent = "เกิดข้อผิดพลาดในการเชื่อมต่อ";
       }
     });
   </script>
 </body>
-</html>
+      </html>
