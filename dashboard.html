@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Tuskub Panel</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome <span id="showUsername"></span></h2>
+    <div id="balance"></div>
+    <p><a href="generate.html">สร้างคีย์</a> | <a href="keys.html">รายการคีย์</a></p>
+    <button onclick="logout()">ออกจากระบบ</button>
+  </div>
+  <script>
+    document.getElementById('showUsername').textContent = localStorage.getItem('username');
+    fetch('http://localhost:3000/api/wallet/' + localStorage.getItem('userId'))
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) document.getElementById('balance').textContent = 'ยอดเงิน: ' + data.balance;
+      });
+    function logout() {
+      localStorage.clear();
+      window.location = 'index.html';
+    }
+  </script>
+</body>
+</html>
