@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Keys - Key Panel</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>รายการคีย์</h2>
+    <table id="keyTable" border="1" style="width:100%">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Game</th>
+          <th>Devices</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>สร้างโดย</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p><a href="dashboard.html">กลับแดชบอร์ด</a></p>
+  </div>
+  <script>
+    fetch('http://localhost:3000/api/keys/all')
+      .then(res => res.json())
+      .then(keys => {
+        const tbody = document.querySelector('#keyTable tbody');
+        keys.forEach(k => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${k.code}</td><td>${k.game}</td><td>${k.devices}</td><td>${k.duration}</td><td>${k.price}</td><td>${k.createdBy ? k.createdBy.username : '-'}</td>`;
+          tbody.appendChild(tr);
+        });
+      });
+  </script>
+</body>
+</html>
